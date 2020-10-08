@@ -1,0 +1,5 @@
+
+voca = {
+    'adapalen': {'differin', 'adapalen'}
+}
+
