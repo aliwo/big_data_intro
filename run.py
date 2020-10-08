@@ -1,25 +1,21 @@
-from datetime import datetime
-
-from crawler.psaw_crawler import psaw_crawler
+from controller.controller import Controller
 from model.types import Base
-from model.engine import engine, SessionMaker
-from model.submission import Submission
+from model.engine import engine
+import os
 
 
 if __name__ == '__main__':
     # 모든 테이블을 만듭니다. 처음에 한 번 실행하고 주석처리 하면 됩니다.
     Base.metadata.create_all(engine)
-    session = SessionMaker()
-    submissions = [Submission(
-        title=submission.title,
-        submission_id=submission.id,
-        author=submission.author.name if submission.author else None,
-        selftext=submission.selftext,
-        flair=submission.link_flair_text,
-        created_at=datetime.utcfromtimestamp(submission.created_utc))
-        for submission in psaw_crawler.get_all_in_month(datetime(2017, 1, 1))]
-    session.add_all(submissions)
-    session.commit()
+    controller = Controller()
+    try:
+        for year in [2017, 2018, 2019]:
+            for month in [i for i in range(1, 13)]:
+                controller.save_all_in_month(year, month)
+                controller.commit()
+                print(f'{year} {month} 저장 완료')
+    except:
+        os.system('afplay /System/Library/Sounds/Sosumi.aiff')
 
 
 

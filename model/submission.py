@@ -5,7 +5,7 @@ from model.types import Base
 
 class Submission(Base):
     __tablename__ = 'submissions'
-    submission_id = Column(CHAR(15))
+    unique_id = Column(CHAR(15))
     title = Column(TEXT)
     author = Column(TEXT)
     selftext = Column(TEXT)
@@ -15,7 +15,7 @@ class Submission(Base):
     def json(self):
         return {
             'title': self.title,
-            'submission_id': self.submission_id,
+            'unique_id': self.unique_id,
             'author': self.author,
             'selftext': self.selftext,
             'flair': self.flair,
