@@ -15,7 +15,7 @@ df_map = {
     'dates': [str(year) + str(month).zfill(2) for year in [2017, 2018, 2019]
                             for month in [i for i in range(1, 13)]]
 }
-# 와! 4중 for 문!
+
 for key, words in VOCA.items():
     temp = []
     for year in [2017, 2018, 2019]:
