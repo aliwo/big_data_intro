@@ -6,7 +6,8 @@ import os
 
 if __name__ == '__main__':
     # 모든 테이블을 만듭니다. 처음에 한 번 실행하고 주석처리 하면 됩니다.
-    Base.metadata.create_all(engine)
+    # Base.metadata.create_all(engine)
+
     controller = Controller()
     try:
         for year in [2017, 2018, 2019]:
