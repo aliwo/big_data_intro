@@ -1,5 +1,7 @@
 from sqlalchemy import Column, ForeignKey, Integer
 from sqlalchemy.dialects.mysql import CHAR, BOOLEAN, TEXT, DECIMAL, DATETIME
+from sqlalchemy.orm import relationship
+
 from model.types import Base
 
 
@@ -11,6 +13,8 @@ class Submission(Base):
     selftext = Column(TEXT)
     flair = Column(TEXT)
     created_at = Column(DATETIME)
+
+    comments = relationship('Comment')
 
     def json(self):
         return {
