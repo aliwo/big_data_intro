@@ -9,12 +9,6 @@ from model.comment import Comment
 from model.voca import VOCA
 from pandas import DataFrame, Series
 
-strategy = '''
-그냥 돌아가면서 쿼리해도 충분함... 3만개 row 를 대상으로, 쿼리 하나에 1초도 안 걸린다. 현재 30MB (2017 ~ 2019)
-일단 지금 데이터를 늘릴 필요는 없겠지만, 나중에는 2015년 부터 쭉 모으자.
-
-모든 voca 의 언급횟수를 "월 별" 로 추려내서 어딘가에 저장할 거다. pandas 로 저장해서 csv 로 뽑아?
-'''
 
 session = SessionMaker()
 df_map = {
