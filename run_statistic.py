@@ -17,11 +17,10 @@ strategy = '''
 '''
 
 session = SessionMaker()
-df = DataFrame(columns= ['item'] +
-               [str(year) + str(month).zfill(2) for year in [2017, 2018, 2019]
-                for month in [i for i in range(1, 13)]]
-               )
-
+df_map = {
+    'dates': [str(year) + str(month).zfill(2) for year in [2017, 2018, 2019]
+                            for month in [i for i in range(1, 13)]]
+}
 # 와! 4중 for 문!
 for key, words in VOCA.items():
     temp = []
@@ -34,6 +33,8 @@ for key, words in VOCA.items():
                 .filter(or_(*[(cls.selftext.ilike(f'%{word}%')) for cls in [Submission, Comment] for word in words])).count()
             temp.append(result)
 
-    df = df.append(Series([key] + temp, index=df.columns), ignore_index=True)
+    df_map[key] = temp
 
-df.to_csv('temp.csv')
+
+df = DataFrame(df_map)
+df.to_excel('temp.xlsx')
